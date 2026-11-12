@@ -24,3 +24,11 @@ document.getElementById("note-form").addEventListener("submit", (e) => {
 });
 
 render();
+
+// Filter visible notes by title
+function filterNotes(query) {
+  const q = query.toLowerCase();
+  document.querySelectorAll("#notes li").forEach((li) => {
+    li.hidden = !li.textContent.toLowerCase().includes(q);
+  });
+}
