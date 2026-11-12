@@ -14,7 +14,8 @@ function createNoteItem(n) {
 function render() {
   const list = document.getElementById("notes");
   list.replaceChildren(...load().map(createNoteItem));
-  document.getElementById("count").textContent = load().length + " note(s) saved";
+  const n = list.children.length;
+  document.getElementById("count").textContent = n + (n === 1 ? " note" : " notes") + " saved";
 }
 document.getElementById("note-form").addEventListener("submit", (e) => {
   e.preventDefault();
