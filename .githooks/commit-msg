@@ -1,0 +1,18 @@
+#!/bin/sh
+# commit-msg: reject messages shorter than 10 characters or not starting
+# with one of the Conventional Commit types feat:, fix:, docs:, refactor:, chore:
+# $1 is the path of the file holding the commit message.
+
+msg=$(head -n 1 "$1")
+
+if [ ${#msg} -lt 10 ]; then
+  echo "commit-msg: message \"$msg\" is too short (${#msg} chars, minimum 10)."
+  exit 1
+fi
+
+if ! echo "$msg" | grep -qE '^(feat|fix|docs|refactor|chore)(\([a-z0-9-]+\))?: '; then
+  echo "commit-msg: message must start with feat:, fix:, docs:, refactor: or chore:"
+  echo "            got: \"$msg\""
+  exit 1
+fi
+exit 0
