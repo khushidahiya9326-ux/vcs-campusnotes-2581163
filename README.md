@@ -5,3 +5,8 @@ Notes are stored in the browser's localStorage, so no server is needed.
 
 ## Run
 Open `index.html` in any browser.
+
+## Features
+- Save notes in the browser (localStorage)
+- Delete a note with its **Delete** button
+- Empty or whitespace-only notes are ignored
