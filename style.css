@@ -2,3 +2,4 @@ body { font-family: sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 
 form { display: grid; gap: .5rem; }
 textarea { min-height: 6rem; }
 li { border: 1px solid #ccc; padding: .5rem; margin: .5rem 0; list-style: none; }
+body { line-height: 1.5; }
