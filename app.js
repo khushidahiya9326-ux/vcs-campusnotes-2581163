@@ -7,7 +7,7 @@ function render() {
   list.innerHTML = "";
   for (const n of load()) {
     const li = document.createElement("li");
-    li.innerHTML = `<strong></strong><p></p>`;
+    li.innerHTML = `<strong></strong><p></p><button class="del">Delete</button>`;
     li.querySelector("strong").textContent = n.title;
     li.querySelector("p").textContent = n.body;
     list.appendChild(li);
@@ -24,3 +24,13 @@ document.getElementById("note-form").addEventListener("submit", (e) => {
 });
 
 render();
+
+// Delete a note when its Delete button is clicked
+document.getElementById("notes").addEventListener("click", (e) => {
+  if (!e.target.classList.contains("del")) return;
+  const index = [...e.target.closest("ul").children].indexOf(e.target.closest("li"));
+  const notes = load();
+  notes.splice(index, 1);
+  save(notes);
+  render();
+});
