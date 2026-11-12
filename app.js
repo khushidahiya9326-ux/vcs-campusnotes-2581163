@@ -17,7 +17,9 @@ function render() {
 document.getElementById("note-form").addEventListener("submit", (e) => {
   e.preventDefault();
   const notes = load();
-  notes.push({ title: title.value, body: body.value, created: Date.now() });
+  const t = title.value.trim(), b = body.value.trim();
+  if (!t || !b) return; // ignore whitespace-only notes
+  notes.push({ title: t, body: b, created: Date.now() });
   save(notes);
   e.target.reset();
   render();
