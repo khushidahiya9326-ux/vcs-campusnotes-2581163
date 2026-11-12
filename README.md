@@ -13,3 +13,6 @@ Open `index.html` in any browser.
 
 ## Roadmap
 - Export notes to PDF (planned)
+
+## Author
+Krishiv Nanda (2581163)
