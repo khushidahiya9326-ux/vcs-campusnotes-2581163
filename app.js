@@ -2,18 +2,19 @@ const KEY = "campusnotes";
 const load = () => JSON.parse(localStorage.getItem(KEY) || "[]");
 const save = (notes) => localStorage.setItem(KEY, JSON.stringify(notes));
 
-function render() {
-  const list = document.getElementById("notes");
-  list.innerHTML = "";
-  for (const n of load()) {
-    const li = document.createElement("li");
-    li.innerHTML = `<strong></strong><p></p><button class="del">Delete</button>`;
-    li.querySelector("strong").textContent = n.title;
-    li.querySelector("p").textContent = n.body;
-    list.appendChild(li);
-  }
+// Build one <li> for a note (text set safely with textContent)
+function createNoteItem(n) {
+  const li = document.createElement("li");
+  li.innerHTML = `<strong></strong><p></p><button class="del">Delete</button>`;
+  li.querySelector("strong").textContent = n.title;
+  li.querySelector("p").textContent = n.body;
+  return li;
 }
 
+function render() {
+  const list = document.getElementById("notes");
+  list.replaceChildren(...load().map(createNoteItem));
+}
 document.getElementById("note-form").addEventListener("submit", (e) => {
   e.preventDefault();
   const notes = load();
